@@ -1,5 +1,6 @@
 package book.blog.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,8 +24,12 @@ public class Author {
     private String fullName;
 
 
+    @Transient
+    private transient List<Book> books;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private List<Book> books;
+    @JsonIgnore
+    public List<Book> getBooks() {
+        return books;
+    }
 
 }
