@@ -42,8 +42,6 @@ public class User implements UserDetails{
     private Set<Role> authorities;
 
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Comment> comments;
 
 
 

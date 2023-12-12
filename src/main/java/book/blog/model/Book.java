@@ -1,20 +1,17 @@
 package book.blog.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Entity
 @Table(name = "books")
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Book {
 
     @Id
@@ -22,16 +19,13 @@ public class Book {
     private Long id;
 
     private String name;
-    private String relaeseDate;
+    private String releaseYear;
     private int rating;
+    private String language;
 
-
-    @ManyToOne // Bir kitabın bir yazarı vardır, bir yazarın birden çok kitabı olabilir.
-    @JoinColumn(name = "author_id", nullable = false)
-    private Author author;
-
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    private List<Comment> comments;
+    @ManyToOne
+    @JoinColumn(name = "category_id") // "category_id" veritabanı sütun adı, Category sınıfındaki id alanını gösterir
+    private Category category;
 
 
 }
